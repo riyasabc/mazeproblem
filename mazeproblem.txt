@@ -1,0 +1,38 @@
+int mazePath(int sr, int sc, int er, int ec, string ans)
+{
+    functionCall++;
+    if (sr == er && sc == ec)
+    {
+        // cout<<ans<<" ";
+        return 0;
+    }
+
+    int count = 0;
+    int lefts = 0;
+    int rights = 0;
+    int diagonals = 0;
+    if (sc + 1 <= ec)
+    {
+        lefts = mazePath(sr, sc + 1, er, ec, ans + "H");
+        //  lefts+="H";
+    }
+
+    if (sr + 1 <= er)
+    {
+        rights = mazePath(sr + 1, sc, er, ec, ans + "V");
+        //  rights+="V";
+    }
+
+    if (sr + 1 <= er && sc + 1 <= ec)
+    {
+        diagonals = mazePath(sr + 1, sc + 1, er, ec, ans + "D");
+        //    diagonals+="D";
+    }
+
+    // string ans_="";
+    // if(ans_.length()<lefts.length()) ans_=lefts;
+    // if(ans_.length()<rights.length()) ans_=rights;
+    // if(ans_.length()<diagonals.length()) ans_=diagonals;
+
+    return max(max(lefts, rights), diagonals) + 1;
+}
